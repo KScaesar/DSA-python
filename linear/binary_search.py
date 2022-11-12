@@ -5,6 +5,9 @@ def binary_search(data: list[int], target: int) -> int:
     # 背下來
     # 寫成 while left <= right 的話
     # 當 target 不存在的時候, 會進入無窮迴圈
+    #
+    # 目標存在的話, left == right, 就可以得到答案, 不會進入 while 判斷區塊
+    # 所以若是有等於的情況出現在 while 判斷區塊, 可以理解為 目標不存在
     while left < right:
         mid = left+(right-left)//2
         print(left, right, mid)
