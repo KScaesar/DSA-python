@@ -1,5 +1,4 @@
-from model import ListNode
-import cycle
+from model import ListNode, create_example_linklist, traversal_linklist
 
 
 def reverse_list_iterative(head: 'ListNode') -> 'ListNode':
@@ -43,12 +42,12 @@ def reverse_list_recursive(head: 'ListNode') -> 'ListNode':
 
 
 if __name__ == '__main__':
-    head1 = cycle.create_example_linklist(False)
-    head2 = cycle.create_example_linklist(False)
-    cycle.traversal(head1)
+    link1 = create_example_linklist(False)
+    link2 = create_example_linklist(False)
+    traversal_linklist(link1)
 
-    head1 = reverse_list_iterative(head1)
-    cycle.traversal(head1)
+    link1 = reverse_list_iterative(link1)
+    traversal_linklist(link1)
 
-    head2 = reverse_list_recursive(head2)
-    cycle.traversal(head2)
+    link2 = reverse_list_recursive(link2)
+    traversal_linklist(link2)
