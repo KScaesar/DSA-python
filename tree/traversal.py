@@ -1,4 +1,4 @@
-from model import TreeNode
+from model import TreeNode, create_example_tree
 
 
 def pre_order_recursive(root: 'TreeNode') -> list[int]:
@@ -279,17 +279,6 @@ def post_order_iterative_v3(root: 'TreeNode') -> list[int]:
         # print("result =", result, "\n")
 
     return result
-
-
-def create_example_tree() -> 'TreeNode':
-    n1 = TreeNode(1)
-    n3 = TreeNode(3)
-    n5 = TreeNode(5)
-    n7 = TreeNode(7)
-    n2 = TreeNode(2, n1, n3)
-    n6 = TreeNode(6, n5, n7)
-    n4 = TreeNode(4, n2, n6)
-    return n4
 
 
 def main():
