@@ -1,6 +1,6 @@
 def debugHelper(func):
     cnt = 0
-    indent = '│ '
+    indent = '| '
 
     def wrapper(*args, **kwargs):
         nonlocal cnt

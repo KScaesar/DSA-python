@@ -1,6 +1,7 @@
 from tool import debugHelper
 
-def bag_value_v1(wt: list[int], val: list[int], W: int) -> int:
+
+def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
     count: int = 0
     space = '  '
 
@@ -35,5 +36,5 @@ def bag_value_v1(wt: list[int], val: list[int], W: int) -> int:
 
 
 if __name__ == '__main__':
-    sol1 = bag_value_v1([2, 1, 3], [4, 2, 3], 4)
-    print(f'{bag_value_v1.__name__} -> {sol1}\n')
+    sol1 = knapsack_01_backtrace([2, 1, 3], [4, 2, 3], 4)
+    print(f'{knapsack_01_backtrace.__name__} = {sol1}\n')
