@@ -32,16 +32,15 @@ def create_example_linklist(has_circle: bool) -> 'ListNode':
     return n0
 
 
-def traversal_linklist(head: 'ListNode'):
+def traversal_linklist(head: 'ListNode') -> list[int]:
     result = []
 
     if head == None:
-        print(result, "end")
-        return
+        return result
 
     cursor: 'ListNode' = head
     while cursor:
         result.append(cursor.value)
         cursor = cursor.next
 
-    print(result, "end")
+    return result

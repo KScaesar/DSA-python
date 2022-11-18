@@ -1,3 +1,4 @@
+from tool import debugHelper
 from model import ListNode, create_example_linklist, traversal_linklist
 
 
@@ -18,6 +19,7 @@ def reverse_list_iterative(head: 'ListNode') -> 'ListNode':
     return prev
 
 
+@debugHelper
 def reverse_list_recursive(head: 'ListNode') -> 'ListNode':
     # 为什么你学不会递归？告别递归，谈谈我的一些经验
     # https://mp.weixin.qq.com/s/mJ_jZZoak7uhItNgnfmZvQ
@@ -44,10 +46,10 @@ def reverse_list_recursive(head: 'ListNode') -> 'ListNode':
 if __name__ == '__main__':
     link1 = create_example_linklist(False)
     link2 = create_example_linklist(False)
-    traversal_linklist(link1)
+    print(traversal_linklist(link1), '\n')
 
     link1 = reverse_list_iterative(link1)
-    traversal_linklist(link1)
+    print(traversal_linklist(link1), '\n')
 
     link2 = reverse_list_recursive(link2)
-    traversal_linklist(link2)
+    print(traversal_linklist(link2), '\n')
