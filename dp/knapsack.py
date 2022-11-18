@@ -95,13 +95,42 @@ def can_partition_backtrace(nums: list[int]) -> bool:
     return backtrace2(dict(), W, [])
 
 
+def can_partition_dp(nums: list[int]) -> bool:
+    # 算法筆記 p198
+
+    N = len(nums)
+    W = sum(nums)//2
+
+    dp = [[False]*(W+1) for _ in range(N+1)]
+    for i in range(N+1):
+        dp[i][0] = True
+
+    # print(dp)
+
+    for i in range(1, N+1):
+        for w in range(1, W+1):
+            if nums[i-1] > w:
+                dp[i][w] = dp[i-1][w]
+            else:
+                # 算法筆記 p196, p200
+                # 反覆著墨 裝入的情況
+                # 想清楚每項 i-1 代表什麼意思
+                dp[i][w] = dp[i-1][w] or dp[i-1][w-nums[i-1]]
+
+    # print(dp)
+    return dp[N][W]
+
+
 if __name__ == '__main__':
     sol1 = knapsack_01_backtrace([2, 1, 3], [4, 2, 3], 4)
     print(f'{knapsack_01_backtrace.__name__} = {sol1}\n')
 
-    sol2 = can_partition_backtrace([1, 6, 4, 9])
-    # sol2 = can_partition_backtrace([1, 5, 11, 5])
+    # can_partition_input = [1, 6, 4, 9]
+    # can_partition_input = [1, 5, 11, 5]
+    can_partition_input = [1, 3, 2, 8]
+
+    sol2 = can_partition_backtrace(can_partition_input)
     print(f'{can_partition_backtrace.__name__} = {sol2}\n')
 
-    # sol3 = can_partition_backtrace([1, 3, 2, 8])
-    # print(f'{can_partition_backtrace.__name__} = {sol3}\n')
+    sol3 = can_partition_dp(can_partition_input)
+    print(f'{can_partition_dp.__name__} = {sol3}\n')
