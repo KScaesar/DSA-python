@@ -1,3 +1,4 @@
+import random
 from tool import debugHelper
 
 
@@ -81,10 +82,10 @@ def can_partition_backtrace(nums: list[int]) -> bool:
 
             pick.append(w)
             index_record[i] = True
-            result = backtrace2(index_record, W-w, pick)
+            subproblem = backtrace2(index_record, W-w, pick)
             index_record[i] = False
 
-            if result:
+            if subproblem:
                 return True
             else:
                 pick.pop()
@@ -121,9 +122,46 @@ def can_partition_dp(nums: list[int]) -> bool:
     return dp[N][W]
 
 
+def coin_change_dp_v1(amount: int, coins: list[int]) -> int:
+    # 算法筆記 p202
+
+    N = len(coins)
+    dp = [[0]*(amount+1) for _ in range(N+1)]
+    for i in range(N+1):  # 不要忘記, row 數量為 N+1
+        dp[i][0] = 1
+
+    # 記得從1開始
+    for i in range(1, N+1):
+        for j in range(1, amount+1):
+            # print(i, j)
+            if j < coins[i-1]:  # coin arry 和 dp array, 其 index 差距1
+                dp[i][j] = dp[i-1][j]
+            else:
+                dp[i][j] = dp[i-1][j]+dp[i][j-coins[i-1]]
+
+    return dp[N][amount]
+
+
+def coin_change_dp_v2(amount: int, coins: list[int]) -> int:
+    # 算法筆記 p205 空間優化版本
+
+    N = len(coins)
+    dp = [0]*(amount+1)
+    dp[0] = 1
+
+    for i in range(N):
+        for j in range(1, amount+1):
+            if j >= coins[i]:
+                dp[j] += dp[j-coins[i]]
+
+    return dp[amount]
+
+
 if __name__ == '__main__':
     sol1 = knapsack_01_backtrace([2, 1, 3], [4, 2, 3], 4)
     print(f'{knapsack_01_backtrace.__name__} = {sol1}\n')
+
+    ##
 
     # can_partition_input = [1, 6, 4, 9]
     # can_partition_input = [1, 5, 11, 5]
@@ -134,3 +172,13 @@ if __name__ == '__main__':
 
     sol3 = can_partition_dp(can_partition_input)
     print(f'{can_partition_dp.__name__} = {sol3}\n')
+
+    ##
+
+    coin_change_input = (5, [1, 2, 5])
+
+    sol4 = coin_change_dp_v1(*coin_change_input)
+    print(f'{coin_change_dp_v1.__name__} = {sol4}\n')
+
+    sol5 = coin_change_dp_v2(*coin_change_input)
+    print(f'{coin_change_dp_v2.__name__} = {sol5}\n')
