@@ -7,10 +7,14 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
     # space = '  '
 
     # @debugHelper
-    def backtrace(wt: list[int], val: list[int], W: int, total: int) -> int:
+    def backtrace1(wt: list[int], val: list[int], W: int, total: int) -> int:
         # nonlocal count
         # nonlocal space
 
+        # 由於下方選擇 coin 的時候
+        # total+v 的 total 數值必須固定不變
+        # 而 result 隨著每次選擇, 會不斷變化數值
+        # 所以必須分成兩個變數 result, total
         result = total
         # print(f'{space*count}enter wt={wt},W={W},result={result}')
 
@@ -24,7 +28,7 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
 
             if W-w > 0:
                 # count = count+1
-                result = max(result, backtrace(wt, val, W-w, total+v))
+                result = max(result, backtrace1(wt, val, W-w, total+v))
                 # count = count-1
 
             wt.insert(i, w)
@@ -33,7 +37,33 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
         # print(f'{space*count}return wt={wt},W={W},result={result}')
         return result
 
-    return backtrace(wt, val, W, 0)
+    # 本題 backtrace1 backtrace2
+    # 可以和 balloon_leetcode312 互相參考
+    # 為什麼寫法略有不同
+
+    result = float('-inf')
+
+    def backtrace2(wt: list[int], val: list[int], W: int, total: int):
+        nonlocal result
+        result = max(result, total)
+
+        if len(wt) == 0:
+            return
+
+        for i, _ in enumerate(wt):
+            w = wt.pop(i)
+            v = val.pop(i)
+
+            if W-w > 0:
+                backtrace2(wt, val, W-w, total+v)
+
+            wt.insert(i, w)
+            val.insert(i, v)
+
+        return
+
+    backtrace2(wt, val, W, 0)
+    return result
 
 
 def can_partition_backtrace(nums: list[int]) -> bool:
