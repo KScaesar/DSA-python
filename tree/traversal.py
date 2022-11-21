@@ -53,6 +53,7 @@ def in_order_recursive(root: 'TreeNode') -> list[int]:
             return
 
         helper(root.left)
+        # result.append((root.value, id(root)))
         result.append(root.value)
         helper(root.right)
 
