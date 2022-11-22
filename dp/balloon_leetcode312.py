@@ -25,6 +25,7 @@ def maxScore_backtrace(nums: list[int]) -> int:
             # 所以此函數 backtrace
             # 不需要回傳值
             # 只需要在結束條件 收集結果
+            # 類似 permutation 的概念
             result = max(result, score)
             return
 
