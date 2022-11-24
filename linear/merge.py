@@ -35,7 +35,7 @@ def merge_array_v1(nums1: list[int], nums2: list[int]) -> list[int]:
     return result
 
 
-def merge_array_v2(nums: list[int], left: int, mid: int, right: int):
+def merge_array_v2(nums: list[int], left: int, left_end: int, right: int):
     # 觀念圖解
     # https://labuladong.github.io/algo/2/21/41/
     # https://labuladong.github.io/algo/images/%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f/5.jpeg
@@ -47,10 +47,10 @@ def merge_array_v2(nums: list[int], left: int, mid: int, right: int):
     temp = [x for x in nums]
 
     i = left
-    j = mid + 1
+    j = left_end + 1
     k = left
 
-    while i <= mid and j <= right:
+    while i <= left_end and j <= right:
         if temp[i] >= temp[j]:
             nums[k] = temp[j]
             j += 1
@@ -60,8 +60,8 @@ def merge_array_v2(nums: list[int], left: int, mid: int, right: int):
             i += 1
             k += 1
 
-    while i != mid + 1 or j != right + 1:
-        if i == mid + 1:
+    while i != left_end + 1 or j != right + 1:
+        if i == left_end + 1:
             nums[k] = temp[j]
             j += 1
             k += 1
