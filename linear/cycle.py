@@ -1,7 +1,8 @@
-from model import ListNode, create_example_linklist, traversal_linklist
+import factory
+from model import ListNode, traversal_linklist
 
 
-def has_cycle(head: 'ListNode') -> tuple['ListNode', bool]:
+def has_cycle(head: ListNode) -> tuple[ListNode | None, bool]:
     if head == None:
         return None, False
 
@@ -30,13 +31,13 @@ def has_cycle(head: 'ListNode') -> tuple['ListNode', bool]:
 
 
 if __name__ == '__main__':
-    link1 = create_example_linklist(False)
+    link1 = factory.cycle_linklist(False)
     cross_node, has = has_cycle(link1)
     print(f'link1 has cycle? {has}')
     if not has:
         traversal_linklist(link1)
 
-    link2 = create_example_linklist(True)
+    link2 = factory.cycle_linklist(True)
     cross_node, has = has_cycle(link2)
     print(f'\nlink2 has cycle? {has}')
     if not has:

@@ -1,20 +1,21 @@
+from factory import cycle_linklist
+from model import ListNode, traversal_linklist
 from tool import debugHelper
-from model import ListNode, create_example_linklist, traversal_linklist
 
 
 def reverse_list_iterative(head: 'ListNode') -> 'ListNode':
     if head == None:
         return None
 
-    next: 'ListNode' = None
+    _next: 'ListNode' = None
     cursor: 'ListNode' = head
     prev: 'ListNode' = None
 
     while cursor:
-        next = cursor.next
+        _next = cursor.next
         cursor.next = prev
         prev = cursor
-        cursor = next
+        cursor = _next
 
     return prev
 
@@ -36,16 +37,16 @@ def reverse_list_recursive(head: 'ListNode') -> 'ListNode':
     # 務必要看解說的網站 之 尋找等價關係
     # 如何思考
     list_1 = reverse_list_recursive(head.next)
-    next = head.next
+    _next = head.next
     head.next = None
-    next.next = head
+    _next.next = head
 
     return list_1
 
 
 if __name__ == '__main__':
-    link1 = create_example_linklist(False)
-    link2 = create_example_linklist(False)
+    link1 = cycle_linklist(False)
+    link2 = cycle_linklist(False)
     print(traversal_linklist(link1), '\n')
 
     link1 = reverse_list_iterative(link1)
