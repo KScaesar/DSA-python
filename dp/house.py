@@ -1,4 +1,4 @@
-from tool import debugHelper
+from tool import debug_helper
 
 
 def house_linear_memo(nums: list[int]) -> int:
@@ -6,7 +6,7 @@ def house_linear_memo(nums: list[int]) -> int:
 
     memo: dict[int, int] = dict()
 
-    @debugHelper
+    @debug_helper
     def dp(nums: list[int], start: int) -> int:
         nonlocal memo
         N = len(nums)
@@ -17,7 +17,7 @@ def house_linear_memo(nums: list[int]) -> int:
         if start in memo:
             return memo[start]
 
-        memo[start] = max(dp(nums, start+1), dp(nums, start+2)+nums[start])
+        memo[start] = max(dp(nums, start + 1), dp(nums, start + 2) + nums[start])
         return memo[start]
 
     return dp(nums, 0)

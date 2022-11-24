@@ -1,10 +1,10 @@
-from backtrace.tool import debugHelper
+from tool import debug_helper
 
 
 def combine(n: int, k: int) -> list[list[int]]:
     result: list[list[int]] = []
 
-    @debugHelper
+    @debug_helper
     def backtrace(n: int, k: int, start: int, track: list[int]):
         nonlocal result
 

@@ -1,6 +1,5 @@
-import factory
-import traversal
-from model import TreeNode
+from tool import *
+from tree import traversal
 
 
 def lca(root, p, q) -> TreeNode | None:
@@ -31,13 +30,13 @@ def lca(root, p, q) -> TreeNode | None:
 
 
 if __name__ == '__main__':
-    root1 = factory.level_order(
+    root1 = create_tree_by_level_order(
         [3, 5, 1, 6, 2, 0, 8, None, None, 7, 4, None, None, None, None, None, None, None, None])
     print(traversal.in_order_recursive(root1))
 
     p = root1.left.left
     q = root1.left.right.left
-    print(f'p={(p.value, id(p))}, q={(q.value, id(q))}')
+    # print(f'p={(p.value, id(p))}, q={(q.value, id(q))}')
     print(f'lca node = {lca(root1, p, q).value}\n')
 
     # 如果 p, q 不存在 tree 中

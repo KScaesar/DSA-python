@@ -1,4 +1,4 @@
-from model import TreeNode, create_example_tree
+from tool import *
 
 
 def pre_order_recursive(root: 'TreeNode') -> list[int]:
@@ -205,7 +205,7 @@ def post_order_iterative_v1(root: 'TreeNode') -> list[int]:
 
 
 def post_order_iterative_v2(root: 'TreeNode') -> list[int]:
-    '''
+    """
     參考網路解答得來的
     對我而言是很特別的思考方式
 
@@ -216,7 +216,7 @@ def post_order_iterative_v2(root: 'TreeNode') -> list[int]:
     當目前節點的兩個子節點都確認過以後, 才會讀取目前的節點
 
     https://shubo.io/iterative-binary-tree-traversal/
-    '''
+    """
 
     if root == None:
         return []
@@ -246,7 +246,7 @@ def post_order_iterative_v2(root: 'TreeNode') -> list[int]:
 
 
 def post_order_iterative_v3(root: 'TreeNode') -> list[int]:
-    '''
+    """
     參考網路解答得來的
     對我而言是很特別的思考方式
 
@@ -256,7 +256,7 @@ def post_order_iterative_v3(root: 'TreeNode') -> list[int]:
     那新的Node就都是最後一個讀取的,所以就把它加到最前面,再往下找其他Nodo
 
     https://ithelp.ithome.com.tw/articles/10247992
-    '''
+    """
 
     if root == None:
         return []
@@ -282,6 +282,17 @@ def post_order_iterative_v3(root: 'TreeNode') -> list[int]:
     return result
 
 
+def create_example_tree() -> 'TreeNode':
+    n1 = TreeNode(1)
+    n3 = TreeNode(3)
+    n5 = TreeNode(5)
+    n7 = TreeNode(7)
+    n2 = TreeNode(2, n1, n3)
+    n6 = TreeNode(6, n5, n7)
+    n4 = TreeNode(4, n2, n6)
+    return n4
+
+
 def main():
     # https://shubo.io/iterative-binary-tree-traversal
 
@@ -294,27 +305,21 @@ def main():
     # 一開始可以不用先思考 外部迴圈的中止條件
     # 先撰寫尋訪過程的程式碼
 
-    print(pre_order_recursive(create_example_tree()),
-          pre_order_recursive.__name__)
-    print(pre_order_iterative_v1(create_example_tree()),
-          pre_order_iterative_v1.__name__)
+    example_tree = create_example_tree()
+
+    print(pre_order_recursive(example_tree), pre_order_recursive.__name__)
+    print(pre_order_iterative_v1(example_tree), pre_order_iterative_v1.__name__)
     print()
 
-    print(in_order_recursive(create_example_tree()), in_order_recursive.__name__)
-    print(in_order_iterative_v1(create_example_tree()),
-          in_order_iterative_v1.__name__)
-    print(in_order_iterative_v2(create_example_tree()),
-          in_order_iterative_v2.__name__)
+    print(in_order_recursive(example_tree), in_order_recursive.__name__)
+    print(in_order_iterative_v1(example_tree), in_order_iterative_v1.__name__)
+    print(in_order_iterative_v2(example_tree), in_order_iterative_v2.__name__)
     print()
 
-    print(post_order_recursive(create_example_tree()),
-          post_order_recursive.__name__)
-    print(post_order_iterative_v1(create_example_tree()),
-          post_order_iterative_v1.__name__)
-    print(post_order_iterative_v2(create_example_tree()),
-          post_order_iterative_v2.__name__)
-    print(post_order_iterative_v3(create_example_tree()),
-          post_order_iterative_v3.__name__)
+    print(post_order_recursive(example_tree), post_order_recursive.__name__)
+    print(post_order_iterative_v1(example_tree), post_order_iterative_v1.__name__)
+    print(post_order_iterative_v2(example_tree), post_order_iterative_v2.__name__)
+    print(post_order_iterative_v3(example_tree), post_order_iterative_v3.__name__)
     print()
 
     # print(post_order_iterative_v1_fail(create_example_tree()),

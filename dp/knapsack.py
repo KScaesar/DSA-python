@@ -1,7 +1,3 @@
-import random
-from tool import debugHelper
-
-
 def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
     # count: int = 0
     # space = '  '
@@ -26,9 +22,9 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
             w = wt.pop(i)
             v = val.pop(i)
 
-            if W-w > 0:
+            if W - w > 0:
                 # count = count+1
-                result = max(result, backtrace1(wt, val, W-w, total+v))
+                result = max(result, backtrace1(wt, val, W - w, total + v))
                 # count = count-1
 
             wt.insert(i, w)
@@ -54,8 +50,8 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
             w = wt.pop(i)
             v = val.pop(i)
 
-            if W-w > 0:
-                backtrace2(wt, val, W-w, total+v)
+            if W - w > 0:
+                backtrace2(wt, val, W - w, total + v)
 
             wt.insert(i, w)
             val.insert(i, v)
@@ -63,12 +59,12 @@ def knapsack_01_backtrace(wt: list[int], val: list[int], W: int) -> int:
         return
 
     backtrace2(wt, val, W, 0)
-    return result
+    return int(result)
 
 
 def can_partition_backtrace(nums: list[int]) -> bool:
     N = len(nums)
-    W = sum(nums)//2
+    W = sum(nums) // 2
 
     # @debugHelper
     def backtrace1(N: int, W: int, pick: list[int]) -> bool:
@@ -85,7 +81,7 @@ def can_partition_backtrace(nums: list[int]) -> bool:
 
             w = nums.pop(i)
             pick.append(w)
-            result = backtrace1(N-1, W-w, pick)
+            result = backtrace1(N - 1, W - w, pick)
             nums.insert(i, w)
 
             if result:
@@ -112,7 +108,7 @@ def can_partition_backtrace(nums: list[int]) -> bool:
 
             pick.append(w)
             index_record[i] = True
-            subproblem = backtrace2(index_record, W-w, pick)
+            subproblem = backtrace2(index_record, W - w, pick)
             index_record[i] = False
 
             if subproblem:
@@ -130,23 +126,23 @@ def can_partition_dp(nums: list[int]) -> bool:
     # 算法筆記 p198
 
     N = len(nums)
-    W = sum(nums)//2
+    W = sum(nums) // 2
 
-    dp = [[False]*(W+1) for _ in range(N+1)]
-    for i in range(N+1):
+    dp = [[False] * (W + 1) for _ in range(N + 1)]
+    for i in range(N + 1):
         dp[i][0] = True
 
     # print(dp)
 
-    for i in range(1, N+1):
-        for w in range(1, W+1):
-            if nums[i-1] > w:
-                dp[i][w] = dp[i-1][w]
+    for i in range(1, N + 1):
+        for w in range(1, W + 1):
+            if nums[i - 1] > w:
+                dp[i][w] = dp[i - 1][w]
             else:
                 # 算法筆記 p196, p200
                 # 反覆著墨 裝入的情況
                 # 想清楚每項 i-1 代表什麼意思
-                dp[i][w] = dp[i-1][w] or dp[i-1][w-nums[i-1]]
+                dp[i][w] = dp[i - 1][w] or dp[i - 1][w - nums[i - 1]]
 
     # print(dp)
     return dp[N][W]
@@ -156,18 +152,18 @@ def coin_change_dp_v1(amount: int, coins: list[int]) -> int:
     # 算法筆記 p202
 
     N = len(coins)
-    dp = [[0]*(amount+1) for _ in range(N+1)]
-    for i in range(N+1):  # 不要忘記, row 數量為 N+1
+    dp = [[0] * (amount + 1) for _ in range(N + 1)]
+    for i in range(N + 1):  # 不要忘記, row 數量為 N+1
         dp[i][0] = 1
 
     # 記得從1開始
-    for i in range(1, N+1):
-        for j in range(1, amount+1):
+    for i in range(1, N + 1):
+        for j in range(1, amount + 1):
             # print(i, j)
-            if j < coins[i-1]:  # coin arry 和 dp array, 其 index 差距1
-                dp[i][j] = dp[i-1][j]
+            if j < coins[i - 1]:  # coin arry 和 dp array, 其 index 差距1
+                dp[i][j] = dp[i - 1][j]
             else:
-                dp[i][j] = dp[i-1][j]+dp[i][j-coins[i-1]]
+                dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1]]
 
     return dp[N][amount]
 
@@ -176,13 +172,13 @@ def coin_change_dp_v2(amount: int, coins: list[int]) -> int:
     # 算法筆記 p205 空間優化版本
 
     N = len(coins)
-    dp = [0]*(amount+1)
+    dp = [0] * (amount + 1)
     dp[0] = 1
 
     for i in range(N):
-        for j in range(1, amount+1):
+        for j in range(1, amount + 1):
             if j >= coins[i]:
-                dp[j] += dp[j-coins[i]]
+                dp[j] += dp[j - coins[i]]
 
     return dp[amount]
 

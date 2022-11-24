@@ -1,6 +1,3 @@
-# from backtrace.tool import debugHelper
-
-
 def permutation(nums: list[int]) -> list[list[int]]:
     result = []
 

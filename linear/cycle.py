@@ -1,5 +1,4 @@
-import factory
-from model import ListNode, traversal_linklist
+from tool import ListNode, traversal_linklist
 
 
 def has_cycle(head: ListNode) -> tuple[ListNode | None, bool]:
@@ -30,14 +29,38 @@ def has_cycle(head: ListNode) -> tuple[ListNode | None, bool]:
     return slow, True
 
 
+def create_cycle_linklist(has_circle: bool) -> 'ListNode':
+    # False:
+    # 0->1->2->3->4->5->None
+    #
+    # True:
+    # 0->1->2->3->4
+    #           \  \
+    #            <-5
+
+    n4 = ListNode(4)
+    n3 = ListNode(3, next=n4)
+    n2 = ListNode(2, next=n3)
+    n1 = ListNode(1, next=n2)
+    n0 = ListNode(0, next=n1)
+
+    if has_circle:
+        n5 = ListNode(5, next=n3)
+    else:
+        n5 = ListNode(5)
+    n4.next = n5
+
+    return n0
+
+
 if __name__ == '__main__':
-    link1 = factory.cycle_linklist(False)
+    link1 = create_cycle_linklist(False)
     cross_node, has = has_cycle(link1)
     print(f'link1 has cycle? {has}')
     if not has:
         traversal_linklist(link1)
 
-    link2 = factory.cycle_linklist(True)
+    link2 = create_cycle_linklist(True)
     cross_node, has = has_cycle(link2)
     print(f'\nlink2 has cycle? {has}')
     if not has:

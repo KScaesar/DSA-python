@@ -1,5 +1,4 @@
-import factory
-from model import ListNode, traversal_linklist
+from tool import *
 
 
 # 将 nums1 和 nums2 这两个有序数组合并成一个有序数组
@@ -109,8 +108,8 @@ def main():
     merge_array_v2(input2, 0, 2, 7)
     print(f'{merge_array_v2.__name__} = {input2}\n')
 
-    list1 = factory.linklist_from_array([2, 3, 4])
-    list2 = factory.linklist_from_array([1, 1, 3, 5, 7])
+    list1 = create_linklist_from_array([2, 3, 4])
+    list2 = create_linklist_from_array([1, 1, 3, 5, 7])
     sol3 = merge_linklist(list1, list2)
     print(f'{merge_linklist.__name__} = {traversal_linklist(sol3)}\n')
 

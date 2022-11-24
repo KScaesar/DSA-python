@@ -1,5 +1,4 @@
-
-from tool import debugHelper
+from tool import debug_helper
 
 
 def subsets_v1(nums: list[int]) -> list[list[int]]:
@@ -7,7 +6,7 @@ def subsets_v1(nums: list[int]) -> list[list[int]]:
 
     memo = set()
 
-    @debugHelper
+    @debug_helper
     def backtrace(nums: list[int], track: list[int]):
         nonlocal memo
 
@@ -19,7 +18,6 @@ def subsets_v1(nums: list[int]) -> list[list[int]]:
         memo.add(key)
 
         for i in range(len(nums)):
-
             # print(i, nums, len(nums))
             v = nums.pop(i)
             track.append(v)
@@ -41,23 +39,23 @@ def subsets_v2(nums: list[int]) -> list[list[int]]:
 
     result = []
 
-    @debugHelper
+    @debug_helper
     def backtrace(nums: list[int], start: int, track: list[int]):
         nonlocal result
         # print(track)
         result.append(track.copy())
 
         for i in range(start, len(nums)):
-
             v = nums[i]
             track.append(v)
-            backtrace(nums, i+1, track)
+            backtrace(nums, i + 1, track)
             track.pop()
 
     backtrace(nums, 0, [])
     return result
 
-@debugHelper
+
+@debug_helper
 def subsets_v3(nums: list[int]) -> list[list[int]]:
     # 算法筆記 p300
     # 數學歸納解法
@@ -66,7 +64,7 @@ def subsets_v3(nums: list[int]) -> list[list[int]]:
         return [[]]
 
     sub_answer = subsets_v3(nums[1:])
-    result = sub_answer + [x.copy()+[nums[0]] for x in sub_answer]
+    result = sub_answer + [x.copy() + [nums[0]] for x in sub_answer]
 
     # 錯誤作法, 因為 append 沒有回傳值
     # 造成元素為 None

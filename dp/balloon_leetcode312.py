@@ -1,4 +1,4 @@
-from tool import debugHelper
+from tool import debug_helper
 
 
 def maxScore_backtrace(nums: list[int]) -> int:
@@ -11,7 +11,7 @@ def maxScore_backtrace(nums: list[int]) -> int:
     nums.insert(0, 1)  # left
     nums.append(1)  # right
 
-    @debugHelper
+    @debug_helper
     def backtrace1(nums: list[int], score: int):
         nonlocal result
         N = len(nums)
@@ -19,7 +19,6 @@ def maxScore_backtrace(nums: list[int]) -> int:
         # 條件不要搞錯 N == 0, 是錯誤條件
         # N == 2, 代表剩下兩個虛擬氣球
         if N == 2:
-
             # 要把所有的元素用光
             # 才能得到最終結果
             # 所以此函數 backtrace
@@ -29,16 +28,16 @@ def maxScore_backtrace(nums: list[int]) -> int:
             result = max(result, score)
             return
 
-        for i in range(1, N-1):
-            point = nums[i-1]*nums[i]*nums[i+1]
+        for i in range(1, N - 1):
+            point = nums[i - 1] * nums[i] * nums[i + 1]
 
             c = nums.pop(i)
-            backtrace1(nums, score+point)
+            backtrace1(nums, score + point)
             nums.insert(i, c)
 
     backtrace1(nums, 0)
 
-    return result
+    return int(result)
 
 
 if __name__ == '__main__':
