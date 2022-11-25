@@ -35,25 +35,24 @@ def traversal_linklist(head: 'ListNode') -> list[int]:
     cursor: 'ListNode' = head
     while cursor:
         result.append(cursor.value)
+        # result.append((id(cursor), cursor.value))
         cursor = cursor.next
 
     return result
 
 
-def create_linklist_from_array(nums: list[int]) -> ListNode | None:
+def create_linklist_from_array(nums: list[int]) -> (ListNode, ListNode):
     dummy = ListNode(None)
-
-    if nums is None:
-        return None
 
     cursor = dummy
     for v in nums:
         cursor.next = ListNode(v)
         cursor = cursor.next
+    tail = cursor
 
-    _next = dummy.next
+    head = dummy.next
     dummy.next = None
-    return _next
+    return head, tail
 
 
 @dataclass

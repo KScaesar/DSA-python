@@ -43,12 +43,12 @@ def reverse_list_recursive(head: 'ListNode') -> 'ListNode':
 
 
 if __name__ == '__main__':
-    link1 = create_linklist_from_array([2, 4, 6, 3, 7])
-    print('list1 = ', traversal_linklist(link1), '\n')
-    rLink1 = reverse_list_iterative(link1)
+    head1, _ = create_linklist_from_array([2, 4, 6, 3, 7])
+    print('list1 = ', traversal_linklist(head1), '\n')
+    rLink1 = reverse_list_iterative(head1)
     print(traversal_linklist(rLink1), '\n')
 
-    link2 = create_linklist_from_array([2, 4, 6, 3, 7])
-    print('list2 = ', traversal_linklist(link2), '\n')
-    rLink2 = reverse_list_recursive(link2)
+    head2, _ = create_linklist_from_array([2, 4, 6, 3, 7])
+    print('list2 = ', traversal_linklist(head2), '\n')
+    rLink2 = reverse_list_recursive(head2)
     print(traversal_linklist(rLink2), '\n')

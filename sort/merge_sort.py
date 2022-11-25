@@ -153,6 +153,8 @@ def merge_sort_v2(nums: list[int]):
     # @debug_helper
     def _sort(nums: list[int], left: int, right: int):
         # 搞清楚結束條件, if right - left < 2 是錯誤條件
+        # 和 quick sort 進行比較
+        # 兩個程式碼位置相同, 邏輯判斷不相同
         #
         # 用游標表示陣列大小
         # 不會出現 大小為0的情況
@@ -197,7 +199,7 @@ if __name__ == '__main__':
     merge_array_v2(input4, 0, 2, 7)
     print(f'{merge_array_v2.__name__} = {input4}\n')
 
-    list1 = create_linklist_from_array([2, 3, 4])
-    list2 = create_linklist_from_array([1, 1, 3, 5, 7])
-    sol5 = merge_linklist(list1, list2)
+    head1, _ = create_linklist_from_array([2, 3, 4])
+    head2, _ = create_linklist_from_array([1, 1, 3, 5, 7])
+    sol5 = merge_linklist(head1, head2)
     print(f'{merge_linklist.__name__} = {traversal_linklist(sol5)}\n')
