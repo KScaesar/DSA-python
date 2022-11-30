@@ -43,7 +43,7 @@ def partition_array(nums: list[int], left: int, right: int) -> int:
     return left
 
 
-def partition_linklist(head: ListNode, tail: ListNode) -> tuple[ListNode | None, ListNode | None]:
+def partition_linklist_fail(head: ListNode, tail: ListNode) -> tuple[ListNode | None, ListNode | None]:
     # https://selfboot.cn/2016/09/01/lost_partition/
     # https://gist.github.com/ytaminE/d2ff709cef397373188dcb421cc12975
     #
@@ -121,8 +121,8 @@ if __name__ == '__main__':
 
     input2 = [5, 9, 2, 1, 4, 7, 5, 8, 3, 6]
     head2, tail2 = create_linklist_from_array(input2)
-    sol2 = partition_linklist(head2, tail2)
-    print(f'{partition_linklist.__name__} = {traversal_linklist(head2)}, {[(id(x.value), x.value) for x in list(sol2)]}\n')
+    sol2 = partition_linklist_fail(head2, tail2)
+    print(f'{partition_linklist_fail.__name__} = {traversal_linklist(head2)}, {[(id(x.value), x.value) for x in list(sol2)]}\n')
 
     input3 = [5, 9, 2, 1, 4, 7, 5, 8, 3, 6]
     # input3 = [9, 8]
