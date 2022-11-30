@@ -1,3 +1,6 @@
+import collections
+
+
 def can_finsh_dfs(total_course: int, prerequisites: list[list[int]]) -> bool:
     # leetcode 207
     # https://labuladong.github.io/algo/2/22/51/
@@ -77,8 +80,55 @@ def can_finsh_dfs(total_course: int, prerequisites: list[list[int]]) -> bool:
     return not is_cycle
 
 
+def can_finsh_bfs(total_course: int, prerequisites: list[list[int]]) -> bool:
+    # https://labuladong.github.io/algo/2/22/51/
+    # 1. 使用邻接表 建立 _graph, 同時紀錄 每個節點 in-degree 的數值
+    # 2. BFS 算法借助 in-degree 数组记录每个节点的「入度」
+    # 3. 所有 in-degree = 0 的節點, 進入 queue
+    # 4. 执行 BFS 循环，不断弹出队列中的节点，减少相邻节点的入度，并将入度变为 0 的节点加入队列
+    # 5. 尋訪所有節點後, 若 count 等于節點數量, 则说明不存在環形
+
+    _graph: list[list[int]] = [[] for _ in range(total_course)]
+    in_degree = [0] * total_course
+    for edge in prerequisites:
+        _to = edge[0]
+        _from = edge[1]
+        _graph[_from].append(_to)
+        in_degree[_to] += 1
+
+    q = collections.deque([])
+    for i in range(total_course):
+        # 节点 i 没有入度，即没有依赖的节点
+        if in_degree[i] == 0:
+            q.append(i)
+
+    count = 0
+    visited = [False] * total_course
+
+    while len(q) != 0:
+        print(f'q={q}, in_degree={in_degree}')
+        size = len(q)
+        for i in range(size):
+            _from = q.popleft()
+            count += 1
+            for _to in _graph[_from]:
+                if visited[_to]:
+                    continue
+
+                in_degree[_to] -= 1
+                if in_degree[_to] == 0:
+                    q.append(_to)
+                    visited[_to] = True
+
+    return count == total_course
+
+
 if __name__ == '__main__':
     input1 = (2, [[1, 0], [0, 1]])
     # input1 = (2, [[1, 0]])
     sol1 = can_finsh_dfs(*input1)
     print(f'{can_finsh_dfs.__name__} = {sol1}')
+
+    input2 = (4, [[1, 0], [2, 0], [3, 1], [3, 2]])
+    sol2 = can_finsh_bfs(*input2)
+    print(f'{can_finsh_bfs.__name__} = {sol2}')
