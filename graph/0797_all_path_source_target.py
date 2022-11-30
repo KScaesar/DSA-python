@@ -12,19 +12,21 @@ def traversal_dfs(graph: list[list[int]]) -> list[list[int]]:
     def dfs1(graph: list[list[int]], node: int):
         nonlocal result, path1
 
+        # 環形發生
+        if path1[node]:
+            return
+
         path1[node] = True
 
         if node == (len(graph) - 1):
             result.append([i for i, v in enumerate(path1) if v])
             # 不需要 return, 這樣才有辦法撤銷 path1
-            # return
-            # 但如果 graph 存在環形, 會進入無窮迴圈
+            # 因為最後一個節點 就是終點
+            # 不會執行 下方的 for range 邏輯
             #
             # 如果想要在這邊 return
             # 必須進行撤銷
             # 讓 path1[node] = False
-            #
-            # 但如果真的有環形, 也會設計 visited 來避免重複進入
 
         for child in graph[node]:
             dfs1(graph, child)
