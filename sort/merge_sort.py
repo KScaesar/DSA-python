@@ -80,11 +80,11 @@ def merge_linklist(list1: ListNode, list2: ListNode) -> ListNode:
     cursor = dummy
 
     while list1 != None and list2 != None:
-        if list1.value >= list2.value:
+        if list1.val >= list2.val:
             cursor.next = list2
             list2 = list2.next
             cursor = cursor.next
-        elif list1.value < list2.value:
+        elif list1.val < list2.val:
             cursor.next = list1
             list1 = list1.next
             cursor = cursor.next

@@ -82,15 +82,15 @@ def partition_linklist_fail(head: ListNode, tail: ListNode) -> tuple[ListNode | 
     prev_pivot: ListNode | None = None
 
     while fast != tail.next:  # head 到 tail 所有元素都要進行判斷
-        if fast.value < pivot.value:  # 慢指針的前進條件
+        if fast.val < pivot.val:  # 慢指針的前進條件
             prev_pivot = slow
             slow = slow.next
             if slow != fast:  # 快慢指針 指向不同節點, 才需要交換
-                slow.value, fast.value = fast.value, slow.value
+                slow.val, fast.val = fast.val, slow.val
 
         fast = fast.next
 
-    slow.value, pivot.value = pivot.value, slow.value  # 最後一步交換, 才讓 slow 真正具有 pivot 特徵
+    slow.val, pivot.val = pivot.val, slow.val  # 最後一步交換, 才讓 slow 真正具有 pivot 特徵
 
     # 由於 prev_pivot 可能為 None
     # 因此需要 pivot 來找尋 右側數列的 head 節點
@@ -125,7 +125,7 @@ if __name__ == '__main__':
     input2 = [5, 9, 2, 1, 4, 7, 5, 8, 3, 6]
     head2, tail2 = create_linklist_from_array(input2)
     sol2 = partition_linklist_fail(head2, tail2)
-    print(f'{partition_linklist_fail.__name__} = {traversal_linklist(head2)}, {[(id(x.value), x.value) for x in list(sol2)]}\n')
+    print(f'{partition_linklist_fail.__name__} = {traversal_linklist(head2)}, {[(id(x.val), x.val) for x in list(sol2)]}\n')
 
     input3 = [5, 9, 2, 1, 4, 7, 5, 8, 3, 6]
     # input3 = [9, 8]

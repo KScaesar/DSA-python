@@ -21,7 +21,7 @@ def debug_helper(func):
 
 @dataclass
 class ListNode:
-    value: int | None
+    val: int | None
     previous: 'ListNode' = None
     next: 'ListNode' = None
 
@@ -34,7 +34,7 @@ def traversal_linklist(head: 'ListNode') -> list[int]:
 
     cursor: 'ListNode' = head
     while cursor:
-        result.append(cursor.value)
+        result.append(cursor.val)
         # result.append((id(cursor), cursor.value))
         cursor = cursor.next
 
