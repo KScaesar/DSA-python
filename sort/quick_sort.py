@@ -5,6 +5,9 @@ from tool import *
 # 所以不能直接傳入一個縮小的陣列
 # 需要使用額外參數 描述陣列大小
 def partition_array(nums: list[int], left: int, right: int) -> int:
+    # https://selfboot.cn/2016/09/01/lost_partition/
+    # https://youtu.be/duln2xAZhBA?t=294
+
     # 不需要這個條件
     # 即使需要, 也不應該回傳 0
     # 再次重複 陣列大小是 left right 決定

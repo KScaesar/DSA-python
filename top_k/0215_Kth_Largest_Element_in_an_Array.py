@@ -49,7 +49,7 @@ class Solution:
         right = len(nums) - 1
 
         while True:
-            position = self.partition_v1(nums, left, right)
+            position = self.partition_v2(nums, left, right)
             if position == target:
                 return nums[target]
             elif position > target:
@@ -58,6 +58,8 @@ class Solution:
                 left = position + 1
 
     def partition_v1(self, nums, left, right) -> int:
+        # https://www.youtube.com/watch?v=Dk9tpG6Jhso&list=PLl-9hEcChubjZRzIoSdACioC2Fsx-JBup&t=120s
+
         pivot = nums[left]
 
         # 仔細想想條件 是 < 還是 <=
@@ -76,8 +78,19 @@ class Solution:
         return left
 
     def partition_v2(self, nums, left, right) -> int:
-        pivot = nums[left]
-        return left
+        # https://www.youtube.com/watch?v=duln2xAZhBA&t=294s
+
+        pivot = nums[right]
+        index = left
+        for cursor in range(left, right):  # 不會執行到最後一個元素, 因為當成 pivot 了
+            # 遞減 nums[cursor] >= pivot, 想要減少交換的情況, 可以沒有 等於 條件
+            # 遞增 nums[cursor] <= pivot
+            if nums[cursor] > pivot:
+                nums[cursor], nums[index] = nums[index], nums[cursor]
+                index += 1
+
+        nums[index], nums[right] = nums[right], nums[index]
+        return index
 
 
 if __name__ == '__main__':
