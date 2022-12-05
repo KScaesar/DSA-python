@@ -21,15 +21,21 @@ def merge_array_v1(nums1: list[int], nums2: list[int]) -> list[int]:
             k += 1
 
     # 處理某一方数组已全部被合并的情況
-    while i != N1 or j != N2:
-        if i == N1:
-            result[k] = nums2[j]
-            j += 1
-            k += 1
-        elif j == N2:
-            result[k] = nums1[i]
-            i += 1
-            k += 1
+    # while i != N1 or j != N2:
+    #     if i == N1:
+    #         result[k] = nums2[j]
+    #         j += 1
+    #         k += 1
+    #     elif j == N2:
+    #         result[k] = nums1[i]
+    #         i += 1
+    #         k += 1
+    #
+    # 簡化寫法
+    if i == N1:
+        result = result[:k] + nums2[j:]
+    elif j == N2:
+        result = result[:k] + nums1[i:]
 
     return result
 
@@ -59,6 +65,9 @@ def merge_array_v2(nums: list[int], left: int, left_end: int, right: int):
             i += 1
             k += 1
 
+    # in-place 的需求
+    # 沒辦法用 類似 v1 的作法
+    # 讓寫法簡化
     while i != left_end + 1 or j != right + 1:
         if i == left_end + 1:
             nums[k] = temp[j]
@@ -181,7 +190,7 @@ def merge_sort_v2(nums: list[int]):
     _sort(nums, 0, len(nums) - 1)
 
 
-if __name__ == '__main__':
+def main():
     input1 = [2, 4, 3, 6, 1, 2, 9]
     sol1 = merge_sort_v1(input1)
     print(f'{merge_sort_v1.__name__} = {sol1}\n')
@@ -189,8 +198,6 @@ if __name__ == '__main__':
     input2 = [2, 4, 3, 6, 1, 2, 9]
     merge_sort_v2(input2)
     print(f'{merge_sort_v2.__name__} = {input2}\n')
-
-    ###
 
     sol3 = merge_array_v1([2, 3, 4], [1, 1, 3, 5, 7])
     print(f'{merge_array_v1.__name__} = {sol3}\n')
@@ -203,3 +210,14 @@ if __name__ == '__main__':
     head2, _ = create_linklist_from_array([1, 1, 3, 5, 7])
     sol5 = merge_linklist(head1, head2)
     print(f'{merge_linklist.__name__} = {traversal_linklist(sol5)}\n')
+
+
+if __name__ == '__main__':
+    # main()
+
+    sol3 = merge_array_v1([2, 3, 4], [1, 1, 3, 5, 7])
+    print(f'{merge_array_v1.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={sol3}\n')
+
+    input4 = [2, 3, 4, 1, 1, 3, 5, 7]
+    merge_array_v2(input4, 0, 2, 7)
+    print(f'{merge_array_v2.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={input4}\n')
