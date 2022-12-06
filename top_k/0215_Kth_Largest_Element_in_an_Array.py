@@ -36,6 +36,8 @@ class Solution:
         for num in nums:
             heapq.heappush(min_heap, num)
             print(min_heap)
+
+            # 順序不能錯, 一定是先 push, 再檢查長度
             if len(min_heap) > k:
                 heapq.heappop(min_heap)
         return min_heap[0]
