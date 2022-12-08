@@ -82,15 +82,21 @@ class Solution:
     def partition_v2(self, nums, left, right) -> int:
         # https://www.youtube.com/watch?v=duln2xAZhBA&t=294s
 
+        # index 表示最终分割点的位置，初始值为 left - 1，表示初始时还没有数据比枢纴值小
         pivot = nums[right]
-        index = left
+        index = left - 1
+
+        # 每当遍历到一个数据时，都会比较它和枢纴值的大小
+        # 如果遍历到的数据比枢纴值小，就将它和 index 指向的数据交换位置
+        # 就能保证 index 后面的数据都比枢纴值小
         for cursor in range(left, right):  # 不會執行到最後一個元素, 因為當成 pivot 了
             # 遞減 nums[cursor] >= pivot, 想要減少交換的情況, 可以沒有 等於 條件
             # 遞增 nums[cursor] <= pivot
             if nums[cursor] > pivot:
-                nums[cursor], nums[index] = nums[index], nums[cursor]
                 index += 1
+                nums[cursor], nums[index] = nums[index], nums[cursor]
 
+        index += 1
         nums[index], nums[right] = nums[right], nums[index]
         return index
 
