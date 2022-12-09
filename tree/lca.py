@@ -38,7 +38,7 @@ if __name__ == '__main__':
     p = root1.left.left
     q = root1.left.right.left
     # print(f'p={(p.value, id(p))}, q={(q.value, id(q))}')
-    print(f'lca node = {lca(root1, p, q).value}\n')
+    print(f'lca node = {lca(root1, p, q).val}\n')
 
     # 模擬 p, p 不存在於 tree 的情境
     # p = root1.left.left

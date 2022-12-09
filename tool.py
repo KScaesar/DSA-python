@@ -25,6 +25,9 @@ class ListNode:
     previous: 'ListNode' = None
     next: 'ListNode' = None
 
+    def __str__(self):
+        return str(self.val)
+
 
 def traversal_linklist(head: 'ListNode') -> list[int]:
     result = []
@@ -57,10 +60,13 @@ def create_linklist_from_array(nums: list[int]) -> (ListNode, ListNode):
 
 @dataclass
 class TreeNode:
-    value: int
+    val: int
     left: 'TreeNode' = None
     right: 'TreeNode' = None
     isVisited: bool = False
+
+    def __str__(self):
+        return str(self.val)
 
 
 def create_tree_by_pre_order(src: list[int | None]) -> TreeNode | None:
@@ -133,7 +139,7 @@ def is_same_tree(root1: 'TreeNode', root2: 'TreeNode') -> bool:
     elif (root1 != None and root2 == None) or (root1 == None and root2 != None):
         return False
 
-    if root1.value != root2.value:
+    if root1.val != root2.val:
         return False
 
     return is_same_tree(root1.left, root2.left) and is_same_tree(root1.right, root2.right)

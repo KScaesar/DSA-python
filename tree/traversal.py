@@ -9,7 +9,7 @@ def pre_order_recursive(root: 'TreeNode') -> list[int]:
         if root == None:
             return
 
-        result.append(root.value)
+        result.append(root.val)
         helper(root.left)
         helper(root.right)
 
@@ -26,7 +26,7 @@ def pre_order_iterative_v1(root: 'TreeNode') -> list[int]:
 
     while stack:
         current = stack.pop()
-        result.append(current.value)
+        result.append(current.val)
 
         # https://www.techiedelight.com/preorder-tree-traversal-iterative-recursive/
         #
@@ -54,7 +54,7 @@ def in_order_recursive(root: 'TreeNode') -> list[int]:
 
         helper(root.left)
         # result.append((root.value, id(root)))
-        result.append(root.value)
+        result.append(root.val)
         helper(root.right)
 
     helper(root)
@@ -88,7 +88,7 @@ def in_order_iterative_v1(root: 'TreeNode') -> list[int]:
         # print("stack =", [x.value for x in stack])
         # print("result =", result)
         current = stack.pop()
-        result.append(current.value)
+        result.append(current.val)
         current = current.right
 
         if len(stack) == 0 and current == None:
@@ -112,7 +112,7 @@ def in_order_iterative_v2(root: 'TreeNode') -> list[int]:
         else:
             current = stack.pop()
 
-            result.append(current.value)
+            result.append(current.val)
             current = current.right
 
         if len(stack) == 0 and current == None:
@@ -131,7 +131,7 @@ def post_order_recursive(root: 'TreeNode') -> list[int]:
 
         helper(root.left)
         helper(root.right)
-        result.append(root.value)
+        result.append(root.val)
 
     helper(root)
     return result
@@ -155,9 +155,9 @@ def post_order_iterative_v1_fail(root: 'TreeNode') -> list[int]:
         else:
             current = stack.pop()
             isBacktrace = True
-            result.append(current.value)
+            result.append(current.val)
 
-        print("stack =", [x.value for x in stack])
+        print("stack =", [x.val for x in stack])
         print("result =", result)
         # success result = [1, 3, 2, 5, 7, 6, 4]
         #
@@ -193,7 +193,7 @@ def post_order_iterative_v1(root: 'TreeNode') -> list[int]:
                 node = current['node'].right
                 isBacktrace = False
             else:
-                result.append(current['node'].value)
+                result.append(current['node'].val)
                 current = stack.pop()
                 node = current['node']
                 isBacktrace = current['isBacktrace']
@@ -228,7 +228,7 @@ def post_order_iterative_v2(root: 'TreeNode') -> list[int]:
         current = stack[-1]
 
         if current.left == None and current.right == None:
-            result.append(current.value)
+            result.append(current.val)
             current = stack.pop()
 
         if current.right:
@@ -267,7 +267,7 @@ def post_order_iterative_v3(root: 'TreeNode') -> list[int]:
     while len(stack) != 0:
         current = stack.pop()
         if current != None:
-            result.insert(0, current.value)
+            result.insert(0, current.val)
 
         # 注意 此方法是先 push 左節點 到 stack
         if current.left:

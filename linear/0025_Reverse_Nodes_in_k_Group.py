@@ -6,6 +6,8 @@ from tool import *
 class Solution:
     # https://leetcode.com/problems/reverse-nodes-in-k-group/
     # https://labuladong.github.io/algo/2/19/20/
+
+    # @debug_helper
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         cursor1 = head
         for _ in range(k):
