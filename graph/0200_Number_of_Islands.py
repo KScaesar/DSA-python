@@ -143,7 +143,7 @@ class Solution:
                                 grid[next_row][next_col] = '-1'
                                 # self.print_grid(grid)
 
-                # self.print_grid(grid)
+                self.print_grid(grid)
 
         return self.count
 
@@ -152,7 +152,8 @@ class Solution:
         self.cols = len(grid[0])
         for i in range(self.rows):
             for j in range(self.cols):
-                print(f' {grid[i][j]:{2}} ', end='')
+                # https://zetcode.com/python/fstring/
+                print(f'{grid[i][j]:>2}', end='')
             print()
         print()
 
