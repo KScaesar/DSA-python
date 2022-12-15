@@ -43,12 +43,13 @@ def left_bound(data: list[int], target: int) -> int:
 
         current = data[mid]
         if current == target:
-            right = mid - 1
+            right = mid - 1  # 改 right
         elif current < target:
             left = mid + 1
         elif current > target:
             right = mid - 1
 
+    # 回傳 left
     return -1 if left >= len(data) or data[left] != target else left
 
 
