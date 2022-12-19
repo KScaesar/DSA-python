@@ -50,6 +50,8 @@ def left_bound(data: list[int], target: int) -> int:
             right = mid - 1
 
     # 回傳 left
+    # 重點 left bound 需要檢查是否 大於 n
+    # leetcode 34
     return -1 if left >= len(data) or data[left] != target else left
 
 
@@ -104,6 +106,8 @@ def right_bound(data: list[int], target: int) -> int:
         elif current > target:
             right = mid - 1
 
+    # 重點 right bound 需要檢查是否 小於 0
+    # leetcode 34
     return -1 if right < 0 or data[right] != target else right
 
 
