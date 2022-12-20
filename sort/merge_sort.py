@@ -81,6 +81,19 @@ def merge_array_v2(nums: list[int], left: int, left_end: int, right: int):
     return
 
 
+def merge_array_v3(left, right):
+    result = []
+
+    while len(left) and len(right):
+        if left[0] < right[0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+
+    result = result + left if len(left) else result + right
+    return result
+
+
 def merge_linklist(list1: ListNode, list2: ListNode) -> ListNode:
     if list1 is None or list2 is None:
         return list1 if list1 is not None else list2
@@ -190,6 +203,30 @@ def merge_sort_v2(nums: list[int]):
     _sort(nums, 0, len(nums) - 1)
 
 
+def merge_sort_v3(array) -> list[int]:
+    if len(array) < 2:
+        return array
+
+    # version-1
+    # 用 索引 index 的方式, 找尋 中間值
+    # 可以用在 遞迴 or 迭代 的實作
+    lo = 0
+    # 開區間 閉區間 由 hi 決定
+    # 因為 hi 採用 閉區間
+    # 所以 下方 array 分割的時候, 也要用 閉區間 來包含 lo ~ hi
+    hi = len(array) - 1
+    mid = lo + (hi - lo) // 2
+
+    # version-2
+    # 用 array 長度, 找尋 中間值
+    # 只適合用在 遞迴類型的實作
+    # mid = len(array) // 2
+
+    head1 = merge_sort_v3(array[:mid + 1])
+    head2 = merge_sort_v3(array[mid + 1:])
+    return merge_array_v3(head1, head2)
+
+
 def main():
     input1 = [2, 4, 3, 6, 1, 2, 9]
     sol1 = merge_sort_v1(input1)
@@ -211,13 +248,17 @@ def main():
     sol5 = merge_linklist(head1, head2)
     print(f'{merge_linklist.__name__} = {traversal_linklist(sol5)}\n')
 
+    input6 = [2, 4, 3, 6, 1, 2, 9]
+    sol6 = merge_sort_v3(input6)
+    print(f'{merge_sort_v3.__name__} = {sol6}\n')
+
 
 if __name__ == '__main__':
-    # main()
+    main()
 
-    sol3 = merge_array_v1([2, 3, 4], [1, 1, 3, 5, 7])
-    print(f'{merge_array_v1.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={sol3}\n')
-
-    input4 = [2, 3, 4, 1, 1, 3, 5, 7]
-    merge_array_v2(input4, 0, 2, 7)
-    print(f'{merge_array_v2.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={input4}\n')
+    # sol3 = merge_array_v1([2, 3, 4], [1, 1, 3, 5, 7])
+    # print(f'{merge_array_v1.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={sol3}\n')
+    #
+    # input4 = [2, 3, 4, 1, 1, 3, 5, 7]
+    # merge_array_v2(input4, 0, 2, 7)
+    # print(f'{merge_array_v2.__name__} expect={[1, 1, 2, 3, 3, 4, 5, 7]}, actual={input4}\n')
