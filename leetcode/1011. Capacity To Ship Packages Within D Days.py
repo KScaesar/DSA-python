@@ -5,6 +5,7 @@ class Solution:
     # https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
     # Binary Search Problems
     # 算法筆記 p369
+    # https://www.daimajiaoliu.com/daima/6104bc1a4498403
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         w_max = sum(weights)
         w_min = max(weights)
