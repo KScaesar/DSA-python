@@ -1,4 +1,7 @@
 def binary_search(data: list[int], target: int) -> int:
+    # https://labuladong.github.io/algo/2/20/29/
+    # https://medium.com/appworks-school/binary-search-%E9%82%A3%E4%BA%9B%E8%97%8F%E5%9C%A8%E7%B4%B0%E7%AF%80%E8%A3%A1%E7%9A%84%E9%AD%94%E9%AC%BC-%E4%B8%80-%E5%9F%BA%E7%A4%8E%E4%BB%8B%E7%B4%B9-dd2cd804aee1
+
     # 因為把 right 定義為 len-1
     # 可得搜尋區間 = [left, right]
     #
@@ -20,6 +23,19 @@ def binary_search(data: list[int], target: int) -> int:
             right = mid - 1
 
         # print('after', left, right, mid)
+
+    # 問題不在開閉區間, 問題在終止條件
+    # 開閉區間只是讓你方便決定終止條件
+    # **真正重要的是當你二分搜停下來後指到的東西意義是什麼**
+    #
+    # 在一般的二分搜尋
+    # left=0
+    # right=len-1
+    # while left < right [left, right)
+    #
+    # 迴圈結束後, 會少比較最後一個數值
+    # 不能直接認定 left == target
+    # 需要在迴圈外 比較最後一次
 
     return -1
 
@@ -111,33 +127,22 @@ def right_bound(data: list[int], target: int) -> int:
     return -1 if right < 0 or data[right] != target else right
 
 
-# 所有元素的數值 必須是唯一的, 不可重複
-# search 和 sort 是密不可分的
-# search 演算法 都是基於 已經排序好的資料 進行 search
-#
-# 一般來說有幾個指標會讓你直接想到二分搜尋
-# 1. 排序後的數組
-# 2. 限定時間複雜度的搜尋法(比方說題目限定O(n)以下的解法)
-#
-# https://blog.csdn.net/pegasuswang_/article/details/18402767
-
-
 if __name__ == '__main__':
-    # print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 1))
-    # print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 40))
-    # print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 50))
-    # print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], -1))
+    print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 1))
+    print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 40))
+    print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], 50))
+    print('binary_search ans =', binary_search([1, 4, 5, 9, 20, 40, 60], -1))
     print()
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 1))
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 6))
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 7))
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 4))
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], -2))
-    print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 3))
-    print()
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 1))
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 6))
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 7))
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 4))
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], -2))
-    print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 3))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 1))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 6))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 7))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 4))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], -2))
+    # print('left_bound ans =', left_bound([1, 3, 3, 3, 3, 6], 3))
+    # print()
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 1))
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 6))
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 7))
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 4))
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], -2))
+    # print('right_bound ans =', right_bound([1, 3, 3, 3, 3, 6], 3))
