@@ -35,17 +35,24 @@ class Solution:
 
         size = len(nums)
         dp0 = None
-        dp1 = 0
+        dp1 = None
+        prev = None
         ans = nums[0]
 
         for i in range(size):
             for j in range(i, size):
+                dp0 = prev
                 if i != j:
                     dp1 = dp0 + nums[j]
                 elif i == j:
                     dp1 = nums[j]
 
-                dp0 = dp1  # 所有選擇路徑執行後, 才開始紀錄前一個數值
+                # 所有選擇路徑執行後, 才開始紀錄前一個數值
+                # dp0 = dp1
+
+                # 避免當最後一次執行的時候
+                # dp0 == dp1
+                prev = dp1
                 ans = max(ans, dp1)
 
         # print(dp)
