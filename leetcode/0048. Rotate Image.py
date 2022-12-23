@@ -11,6 +11,10 @@ class Solution:
     # https://www.bilibili.com/video/BV1wK4y1j7JU/
     # https://www.geeksforgeeks.org/zigzag-or-diagonal-traversal-of-matrix/
 
+    # 旋轉陣列的應用
+    # 類數獨遊戲 快速求所有解
+    # https://www.facebook.com/groups/1403852566495675/posts/3349253398622239/?comment_id=3349623705251875
+
     def rotate(self, matrix: List[List[int]]) -> None:
         # 利用矩陣以對角線為中心, 互換的特性
         # https://labuladong.github.io/algo/2/20/26/
