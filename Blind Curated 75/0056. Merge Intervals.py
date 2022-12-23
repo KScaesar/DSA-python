@@ -4,6 +4,9 @@ from typing import List
 class Solution:
     # https://leetcode.com/problems/merge-intervals/
 
+    # graph 連通分量解法
+    # https://leetcode.com/problems/merge-intervals/solutions/127480/merge-intervals/?orderBy=most_votes
+
     def merge_v2(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key=lambda x: x[0])
         size = len(intervals)
