@@ -7,7 +7,7 @@ def subsets_v1(nums: list[int]) -> list[list[int]]:
     memo = set()
 
     @debug_helper
-    def backtrace(nums: list[int], track: list[int]):
+    def backtrack(nums: list[int], track: list[int]):
         nonlocal memo
 
         key = tuple(sorted(track))
@@ -21,7 +21,7 @@ def subsets_v1(nums: list[int]) -> list[list[int]]:
             # print(i, nums, len(nums))
             v = nums.pop(i)
             track.append(v)
-            backtrace(nums, track)
+            backtrack(nums, track)
             track.pop()
 
             # 子集合不需要窮組所有組合, 所以其實不需要進行 insert, 進行此動作, 反而增加運算時間
@@ -29,7 +29,7 @@ def subsets_v1(nums: list[int]) -> list[list[int]]:
             # 取子集合 最好的方式, 應該用 v2 索引的方式進行
             nums.insert(i, v)
 
-    backtrace(nums, [])
+    backtrack(nums, [])
     return [list(x) for x in list(memo)]
 
 
@@ -40,7 +40,7 @@ def subsets_v2(nums: list[int]) -> list[list[int]]:
     result = []
 
     @debug_helper
-    def backtrace(nums: list[int], start: int, track: list[int]):
+    def backtrack(nums: list[int], start: int, track: list[int]):
         nonlocal result
         # print(track)
         result.append(track.copy())
@@ -48,10 +48,10 @@ def subsets_v2(nums: list[int]) -> list[list[int]]:
         for i in range(start, len(nums)):
             v = nums[i]
             track.append(v)
-            backtrace(nums, i + 1, track)
+            backtrack(nums, i + 1, track)
             track.pop()
 
-    backtrace(nums, 0, [])
+    backtrack(nums, 0, [])
     return result
 
 
