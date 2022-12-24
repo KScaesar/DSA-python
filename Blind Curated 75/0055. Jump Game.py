@@ -36,6 +36,8 @@ class Solution:
         # 空間壓縮版本
         dp_0 = -1
         dp_1 = -1
+
+        # base case
         prev = nums[0]
 
         for i in range(1, size):
