@@ -154,6 +154,8 @@ class Solution:
         return result
 
     def insert_v4(self, intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
+        # Blind Curated 75 目錄有不同作法, 可以互相參考
+
         res = []
 
         for i in range(len(intervals)):
