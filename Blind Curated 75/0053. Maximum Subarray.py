@@ -4,6 +4,8 @@ from typing import List
 class Solution:
     # https://leetcode.com/problems/maximum-subarray/
 
+    # 類似題目?
+    # 0152. Maximum Product Subarray
     def maxSubArray(self, nums: List[int]) -> int:
         # 算法筆記 p111
 
