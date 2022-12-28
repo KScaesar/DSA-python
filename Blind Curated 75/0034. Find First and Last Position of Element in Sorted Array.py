@@ -3,6 +3,9 @@ from typing import List
 
 class Solution:
     # https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/
+
+    # 類似題目
+    # 0153. Find Minimum in Rotated Sorted Array
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         start = -1
         end = -1
