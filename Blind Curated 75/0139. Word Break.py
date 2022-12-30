@@ -21,8 +21,13 @@ class Solution:
 
         # 拆分为一个或多个在字典中出现的单词，所以这是完全背包。
         # 还要讨论两层for循环的前后顺序。
-        # 如果求组合数就是外层for循环遍历物品，内层for遍历背包。
+        # 如果求组合数就是外层for循环遍历物品，内层for遍历背包。基本背包問題
         # 如果求排列数就是外层for遍历背包，内层for循环遍历物品。
+        #
+        # https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0518.%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2II.md
+        #
+        # 背包里求排列问题，即：1、2 步 和 2、1 步都是上三个台阶，但是这两种方法不一样！
+        # https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%89%88%E6%9C%AC.md
 
         # 以長度為狀態
         # dp[i] : 字符串长度为i的话，dp[i]为true，表示可以拆分为一个或多个在字典中出现的单词。
@@ -77,6 +82,12 @@ class Solution:
         # 定義 dfs(index) 為 s[index:] 是否可以用 workDict 進行切割
         # dfs(i) = dfs(i + len(w1) or dfs(i + len(w2) or ...
         # dfs(len(s)) = True
+        #
+        # 後來發現, 這種加了 memo 的方式
+        # 歸屬於 dfs, backtrack
+        # 动态规划和回溯算法的關係
+        # 算法筆記 p213
+        # https://labuladong.github.io/algo/di-er-zhan-a01c6/bei-bao-le-34bd4/dong-tai-g-35341/
 
         memo = dict()
 
