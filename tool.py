@@ -3,17 +3,18 @@ from dataclasses import dataclass
 
 def debug_helper(func):
     cnt = 0
-    indent = '| '
+    symbol = '| '
 
     def wrapper(*args, **kwargs):
         nonlocal cnt
-        print(f'{indent * cnt}-> {args} kwargs={kwargs}')
+        indent = symbol * cnt
+        print(f'{indent}-> {args} {kwargs if kwargs else ""}')
 
         cnt += 1
-        res = func(*args, **kwargs)
+        res = func(*args, **kwargs, indent=indent + "->")
         cnt -= 1
 
-        print(f'{indent * cnt}<- {args} kwargs={kwargs}, result={res}')
+        print(f'{symbol * cnt}<- {args} {kwargs if kwargs else ""}, return={res if res else ""}')
         return res
 
     return wrapper
@@ -143,6 +144,22 @@ def is_same_tree(root1: 'TreeNode', root2: 'TreeNode') -> bool:
         return False
 
     return is_same_tree(root1.left, root2.left) and is_same_tree(root1.right, root2.right)
+
+
+def print_matrix(grid: list[list[any]], **info):
+    m = len(grid)
+    n = len(grid[0])
+
+    other = {k: v for k, v in info.items() if k != "indent"}
+    indent = info["indent"] if info.get("indent") else ""
+    print(f'{indent} m={m} n={n} {other}')
+
+    for row in range(m):
+        print(f'{indent}', end="")
+        for col in range(n):
+            print(f'{grid[row][col]:>3}', end="")
+        print()
+    print(indent)
 
 
 if __name__ == '__main__':

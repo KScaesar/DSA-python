@@ -3,6 +3,8 @@ from typing import List
 
 class Solution:
     # https://leetcode.com/problems/word-search/
+
+    # 類似 0212. Word Search II
     def exist(self, board: List[List[str]], word: str) -> bool:
         m = len(board)
         n = len(board[0])
