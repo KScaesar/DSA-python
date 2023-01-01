@@ -6,6 +6,9 @@ from tool import *
 class Solution:
     # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
+    # follow up 解法
+    # node 定義, 新增一個 count field
+
     def kthSmallest_v2(self, root: Optional[TreeNode], k: int) -> int:
         # 利用 inorder
 
