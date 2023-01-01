@@ -4,9 +4,23 @@ from tool import *
 class Solution:
     # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
-    # 算法筆記 p270
+    def lowestCommonAncestor_v4(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        # 利用 bst 特性
+        # 使用 v2 的概念, 不需要另外使用 contain_child
+
+        if root.val > p.val and root.val > q.val:
+            return self.lowestCommonAncestor_v4(root.left, p, q)
+        if root.val < p.val and root.val < q.val:
+            return self.lowestCommonAncestor_v4(root.right, p, q)
+
+        return root
+
     def lowestCommonAncestor_v3(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         # postorder
+        #
+        # https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0236.%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88.md
+        #
+        # 算法筆記 p270
 
         if root is None:
             return None
