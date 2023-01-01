@@ -7,6 +7,9 @@ class Solution:
     # https://leetcode.com/problems/binary-tree-maximum-path-sum/
 
     # 重點題目, 多加複習, 前序 後序 的意義
+
+    # 相似的解題概念
+    # 0230. Kth Smallest Element in a BST
     def maxPathSum_v1(self, root: Optional[TreeNode]) -> int:
         # https://leetcode.com/problems/binary-tree-maximum-path-sum/solutions/603423/python-recursion-stack-thinking-process-diagram/
 
