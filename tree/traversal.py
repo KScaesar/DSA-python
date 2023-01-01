@@ -1,6 +1,8 @@
 from tool import *
 
 
+# 二叉树的统一迭代法
+# https://programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%BB%9F%E4%B8%80%E8%BF%AD%E4%BB%A3%E6%B3%95.html
 def pre_order_recursive(root: 'TreeNode') -> list[int]:
     result = []
 
