@@ -1,5 +1,6 @@
 class Solution:
     # https://leetcode.com/problems/valid-anagram/
+
     def isAnagram_v2(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
@@ -40,4 +41,11 @@ class Solution:
 
 
 if __name__ == '__main__':
-    print(Solution().isAnagram_v1("anagram", "nagaram"))
+    # print(Solution().isAnagram_v1("anagram", "nagaram"))
+
+    # Follow up: What if the inputs contain Unicode characters?
+    word = "x凱薩1"
+    for i in range(len(word)):
+        unicode = ord(word[i])
+        print(word[i], unicode)
+        print(chr(unicode))
