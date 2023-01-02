@@ -9,6 +9,8 @@ class Solution:
         sets = set(nums)
         ans = 0
         for v in sets:
+            # 確定 v 是 起點
+            # 才開始運算
             if not v - 1 in sets:
                 _next = v + 1
                 while _next in sets:
@@ -40,15 +42,24 @@ class Solution:
             # print(parent)
             root1 = find(node1)
             root2 = find(node2)
+
+            # 正確作法
             if root1 != root2:
-                # 要固定往某個方向
-                # 不然會 union 失敗
-                #
-                # parent[node2] = root1
-                if node1 > node2:
-                    parent[node2] = root1
-                else:
-                    parent[node1] = root2
+                parent[root2] = root1
+
+            # 錯誤作法
+            # 造成需要 往特定方向 union
+            # 應該修改 根節點的指向
+            # 而不是修改 子節點的指向
+            # if root1 != root2:
+            #     # 要固定往某個方向
+            #     # 不然會 union 失敗
+            #     #
+            #     # parent[node2] = root1
+            #     if node1 > node2:
+            #         parent[node2] = root1
+            #     else:
+            #         parent[node1] = root2
 
         for v in nums:
             if v - 1 in parent.keys():
