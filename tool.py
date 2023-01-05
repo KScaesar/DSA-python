@@ -157,7 +157,8 @@ def print_matrix(grid: list[list[any]], **info):
     for row in range(m):
         print(f'{indent}', end="")
         for col in range(n):
-            print(f'{grid[row][col]:>3}', end="")
+            element = grid[row][col] if grid[row][col] is not None else '_'
+            print(f'{element:>{4}}', end="")
         print()
     print(indent)
 
