@@ -151,14 +151,19 @@ def print_matrix(grid: list[list[any]], **info):
     n = len(grid[0])
 
     other = {k: v for k, v in info.items() if k != "indent"}
-    indent = info["indent"] if info.get("indent") else ""
+    indent = info.get("indent", "")
+    targets = info.get('targets', [])
     print(f'{indent} m={m} n={n} {other}')
 
     for row in range(m):
         print(f'{indent}', end="")
         for col in range(n):
             element = grid[row][col] if grid[row][col] is not None else '_'
-            print(f'{element:>{4}}', end="")
+            if (row, col) in targets:
+                element = "*" + str(element)
+                print(f'{element:>{5}}', end="")
+            else:
+                print(f'{element:>{5}}', end="")
         print()
     print(indent)
 
