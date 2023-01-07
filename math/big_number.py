@@ -1,5 +1,7 @@
 # https://iter01.com/593290.html
 
+# 加減乘除
+# 進位:carry 借位:borrow
 
 def add(num1: str, num2: str) -> str:
     if len(num1) > len(num2):
@@ -9,24 +11,24 @@ def add(num1: str, num2: str) -> str:
     len_max = len(num2)
     ans = []
     remainder = 0
-    up = 0
+    carry = 0
     i = 0
     for i in range(len_min):
-        _sum = int(num1[len_min - i - 1]) + int(num2[len_max - i - 1]) + up
-        up = _sum // 10
+        _sum = int(num1[len_min - i - 1]) + int(num2[len_max - i - 1]) + carry
+        carry = _sum // 10
         remainder = _sum % 10
-        # print(up, remainder)
+        # print(carry, remainder)
         ans.append(str(remainder))
 
     for j in range(len_max - len_min):
-        _sum = int(num2[len_max - len_min - j - 1]) + up
-        up = _sum // 10
+        _sum = int(num2[len_max - len_min - j - 1]) + carry
+        carry = _sum // 10
         remainder = _sum % 10
-        # print(up, remainder)
+        # print(carry, remainder)
         ans.append(str(remainder))
 
-    if up:
-        ans.append(str(up))
+    if carry:
+        ans.append(str(carry))
 
     # ans.reverse()
     return ''.join(ans[::-1])
@@ -44,7 +46,7 @@ def subtract(num1: str, num2: str) -> str:
     j = len_min - 1
 
     ans = ''
-    up = 0
+    borrow = 0
     remainder = 0
 
     while i >= 0 or j >= 0:
@@ -53,12 +55,12 @@ def subtract(num1: str, num2: str) -> str:
         i -= 1
         j -= 1
 
-        r = n1 - n2 + up
+        r = n1 - n2 + borrow
         if r >= 0:
-            up = 0
+            borrow = 0
             remainder = r
         elif r < 0:
-            up = -1
+            borrow = -1
             remainder = 10 + r
 
         if i == -1 and \
@@ -87,10 +89,10 @@ def multiply(num1: str, num2: str) -> str:
             ans[i + j + 1] += int(num1[i]) * int(num2[j])
 
     for k in range(len(ans) - 1, -1, -1):
-        up = ans[k] // 10
+        carry = ans[k] // 10
         remainder = ans[k] % 10
         ans[k] = remainder
-        ans[k - 1] += up
+        ans[k - 1] += carry
 
     while len(ans) != 0 and ans[0] == 0:
         ans.pop(0)
