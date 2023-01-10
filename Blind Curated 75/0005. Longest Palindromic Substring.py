@@ -2,6 +2,9 @@ class Solution:
     # https://leetcode.com/problems/longest-palindromic-substring/
     # 算法筆記 p384
     # https://leetcode.com/problems/longest-palindromic-substring/solutions/127837/longest-palindromic-substring/?orderBy=most_votes
+
+    # 相似題 0647. Palindromic Substrings
+
     def longestPalindrome_dp(self, s: str) -> str:
         n = len(s)
 
