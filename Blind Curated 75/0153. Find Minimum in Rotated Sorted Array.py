@@ -14,38 +14,37 @@ class Solution:
         # https://zhuanlan.zhihu.com/p/259545903
         # 可以看看 若會同樣的數字重複出現, 寫法是怎麼樣的
 
+        ans = 0
         left = 0
         right = len(nums) - 1
-        while left < right:  # 停止的時候, 只剩下一個元素
+        while left <= right:
             mid = (left + right) // 2
 
-            # 解讀為 mid 右邊(包含mid) 都滿足條件
-            # 就更新右邊
-            #
             # 為什麼用這個條件, 因為很明顯
             # 最小值存在的區段, 都滿足這個條件
-            if nums[mid] <= nums[-1]:
-                right = mid  # 答案可能包含在其中, 所以不能排除 mid, 因此不需要 -1
+            if nums[mid] <= nums[-1]:  # [mid,last]
+                ans = mid
+                right = mid - 1  # [left,mid-1]
             else:
                 left = mid + 1
-        return nums[left]
+        return nums[ans]
 
     def findMax(self, nums: List[int]) -> int:
+        ans = 0
         left = 0
         right = len(nums) - 1
-        while left < right:
+        while left <= right:
             mid = (left + right) // 2
 
             # 解讀為 mid 左邊(包含mid) 都滿足條件
-            # 就更新左邊
-            #
             # 為什麼用這個條件, 因為很明顯
             # 最大值存在的區段, 都滿足這個條件
-            if nums[mid] >= nums[0]:
-                left = mid  # 答案可能包含在其中, 所以不能排除 mid, 因此不需要 +1
+            if nums[mid] >= nums[0]:  # [head, mid]
+                ans = mid
+                left = mid + 1  # [mid+1,right]
             else:
                 right = mid - 1
-        return nums[left]
+        return nums[ans]
 
 
 if __name__ == '__main__':
