@@ -12,7 +12,8 @@ def debug_helper(func):
         print(f'{indent}-> {args} {kwargs if kwargs else ""}')
 
         cnt += 1
-        res = func(*args, **kwargs, indent=indent + "->")
+        # res = func(*args, **kwargs, indent=indent + "->")
+        res = func(*args, **kwargs)
         cnt -= 1
 
         print(f'{symbol * cnt}<- {args} {kwargs if kwargs else ""}, return={res if res else ""}')
