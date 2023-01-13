@@ -1,3 +1,4 @@
+import collections
 from dataclasses import dataclass
 
 
@@ -68,6 +69,33 @@ class TreeNode:
 
     def __str__(self):
         return str(self.val)
+
+
+def traversal_tree_by_level_order(root: TreeNode) -> list[list[int | None]]:
+    if root is None:
+        return []
+    ans = []
+    queue = collections.deque([root])
+    while queue:
+        size = len(queue)
+        level = []
+        has_next_level = False
+
+        for _ in range(size):
+            node = queue.popleft()
+
+            v = None if node is None else node.val
+            if not has_next_level and v is not None:
+                has_next_level = True
+            level.append(v)
+
+            if node:
+                queue.append(node.left)
+                queue.append(node.right)
+
+        if has_next_level:
+            ans.append(level)
+    return ans
 
 
 def create_tree_by_pre_order(src: list[int | None]) -> TreeNode | None:
@@ -169,9 +197,14 @@ def print_matrix(grid: list[list[any]], **info):
 
 
 if __name__ == '__main__':
-    root1 = create_tree_by_pre_order([1, 2, None, 4, None, None, 3, None, None])
+    # root1 = create_tree_by_pre_order([1, 2, None, 4, None, None, 3])
+    root1 = create_tree_by_level_order([1, 2, None, 4, None, None, 3])
+    root3 = create_tree_by_level_order([1, None, 2, 4, None, None, 3])
 
-    # root2 = create_tree_by_level_order([1, 2, 3, None, 4, None, None, None, None])
-    root2 = create_tree_by_level_order([1, 2, 3, None, None, 4, None, None, None])
+    root2 = create_tree_by_level_order([1, 2, 3, None, None, 4, None])
 
-    print(f'root1 and root2 is same tree? {is_same_tree(root1, root2)}\n')
+    # print(f'root1 and root2 is same tree? {is_same_tree(root1, root2)}\n')
+
+    print(traversal_tree_by_level_order(root1))
+    print(traversal_tree_by_level_order(root3))
+    # print(traversal_tree_by_level_order(root2))
