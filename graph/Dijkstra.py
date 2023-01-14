@@ -8,6 +8,9 @@ class Solution:
 
     # https://labuladong.github.io/algo/di-yi-zhan-da78c/shou-ba-sh-03a72/dijkstra-s-6d0b2/
 
+    # 限制中轉次數的寫法
+    # https://labuladong.github.io/algo/di-er-zhan-a01c6/yong-dong--63ceb/lv-you-she-2b4f3/
+
     # 不能有效處理帶有負權邊的圖
     # E = edge, V = vertex
     # 使用 heap, time complexity O( (|E|+|V|)*log|V| )
