@@ -1,4 +1,5 @@
 import collections
+import collections.abc
 from dataclasses import dataclass
 
 
@@ -209,3 +210,7 @@ if __name__ == '__main__':
     print(traversal_tree_by_level_order(root1))
     print(traversal_tree_by_level_order(root3))
     # print(traversal_tree_by_level_order(root2))
+
+
+def sort_nested(results: list[any], **kwargs):
+    return sorted([ele if not isinstance(ele, collections.abc.Iterable) else sort_nested(ele) for ele in results], **kwargs)

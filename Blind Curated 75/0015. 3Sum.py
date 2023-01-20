@@ -4,6 +4,8 @@ from typing import List
 class Solution:
     # https://leetcode.com/problems/3sum/
 
+    # https://github.com/youngyangyang04/leetcode-master/blob/master/problems/0015.%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C.md
+
     def threeSum_v4(self, nums: List[int]) -> List[List[int]]:
         # 重點之一, nums 有多對元素和 且 不可以重複, 應該如何處理
         # 算法筆記 p328
