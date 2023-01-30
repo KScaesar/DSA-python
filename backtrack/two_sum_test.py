@@ -6,6 +6,30 @@ from tool import sort_nested
 # 一個元素只能被用一次
 # 回傳 value pair
 
+def two_sum_v4(nums, target) -> list[list[int]]:
+    # 和 v3 邏輯相同
+    # 只是換一個寫法
+
+    nums.sort()
+    size = len(nums)
+    left = 0
+    right = size - 1
+    ans = []
+    while left < right:
+        _sum = nums[left] + nums[right]
+        if _sum == target:
+            if len(ans) == 0:
+                ans.append([nums[left], nums[right]])
+            elif len(ans) != 0 and ans[-1] != [nums[left], nums[right]]:
+                ans.append((nums[left], nums[right]))
+            right -= 1
+        elif _sum > target:
+            right -= 1
+        elif _sum < target:
+            left += 1
+    return ans
+
+
 def two_sum_v3(nums, target) -> list[list[int]]:
     # 有排序, 效能比 v2 更好
 
@@ -110,3 +134,4 @@ def test_two_sum():
     assert sort_nested(two_sum_v1(nums, target)) == [[1, 3], [2, 2]]
     assert sort_nested(two_sum_v2(nums, target)) == [[1, 3], [2, 2]]
     assert sort_nested(two_sum_v3(nums, target)) == [[1, 3], [2, 2]]
+    assert sort_nested(two_sum_v4(nums, target)) == [[1, 3], [2, 2]]
