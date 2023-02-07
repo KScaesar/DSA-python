@@ -176,24 +176,22 @@ def is_same_tree(root1: 'TreeNode', root2: 'TreeNode') -> bool:
     return is_same_tree(root1.left, root2.left) and is_same_tree(root1.right, root2.right)
 
 
-def print_matrix(grid: list[list[any]], **info):
+def print_matrix(grid: list[list[any]], **info: dict[str, any]):
     m = len(grid)
     n = len(grid[0])
 
-    other = {k: v for k, v in info.items() if k != "indent"}
+    msg_by_printed = {k: v for k, v in info.items() if k != "indent"}
     indent = info.get("indent", "")
     targets = info.get('targets', [])
-    print(f'{indent} m={m} n={n} {other}')
+    print(f'{indent} m={m} n={n} {msg_by_printed}')
 
     for row in range(m):
         print(f'{indent}', end="")
         for col in range(n):
-            element = grid[row][col] if grid[row][col] is not None else '_'
+            element = f'{grid[row][col]}' if grid[row][col] is not None else '_'
             if (row, col) in targets:
-                element = "*" + str(element)
-                print(f'{element:>{5}}', end="")
-            else:
-                print(f'{element:>{5}}', end="")
+                element = f'*{element}'
+            print(f'{element:>{5}}', end="")
         print()
     print(indent)
 
