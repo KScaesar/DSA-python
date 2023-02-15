@@ -190,7 +190,7 @@ def print_matrix(grid: list[list[any]], **info: dict[str, any]):
         for col in range(n):
             element = f'{grid[row][col]}' if grid[row][col] is not None else '_'
             if (row, col) in targets:
-                element = f'*{element}'
+                element = '*' + element
             print(f'{element:>{5}}', end="")
         print()
     print(indent)

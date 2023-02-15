@@ -7,6 +7,37 @@ class Solution:
     # https://leetcode.com/problems/reverse-nodes-in-k-group/
     # https://labuladong.github.io/algo/2/19/20/
 
+    def reverseKGroup_v2(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if head is None:
+            return None
+
+        cnt = k
+        cursor = head
+        prev = None
+        while cnt and cursor:
+            cnt -= 1
+            prev = cursor
+            cursor = cursor.next
+        if prev:
+            prev.next = None
+
+        sub = self.reverseKGroup_v2(cursor, k)
+
+        # 不滿足 k 數量的 不需要 反轉
+        if cnt > 0:
+            prev.next = sub
+            return head
+
+        cursor = head
+        prev = None
+        while cursor:
+            _next = cursor.next
+            cursor.next = prev
+            prev = cursor
+            cursor = _next
+        head.next = sub
+        return prev
+
     # @debug_helper
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         cursor1 = head
@@ -41,6 +72,10 @@ class Solution:
 if __name__ == '__main__':
     obj = Solution()
 
+    # head1, _ = create_linklist_from_array([1, 2, 3, 4, 5])
+    # sol1 = obj.reverseKGroup(head1, 3)
+    # print(f'{traversal_linklist(sol1)}')
+
     head1, _ = create_linklist_from_array([1, 2, 3, 4, 5])
-    sol1 = obj.reverseKGroup(head1, 3)
+    sol1 = obj.reverseKGroup_v2(head1, 3)
     print(f'{traversal_linklist(sol1)}')
