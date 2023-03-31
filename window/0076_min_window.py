@@ -2,7 +2,7 @@ import collections
 
 
 def min_window(source: str, target: str) -> str:
-    # https://labuladong.github.io/algo/2/20/27/
+    # https://labuladong.github.io/algo/di-ling-zh-bfe1b/wo-xie-le--f02cd/
 
     current: dict[str, int] = collections.defaultdict(int)
     need: dict[str, int] = collections.defaultdict(int)
