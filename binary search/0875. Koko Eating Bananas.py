@@ -14,6 +14,8 @@ class Solution:
         while left <= right:
             mid = left + (right - left) // 2
 
+            # 相似概念: 0410. Split Array Largest Sum
+            #
             # 速度數列是遞增, 時間花費數列遞減
             # 目標是 花費時間
             # 所以應該在遞減數列找目標值
