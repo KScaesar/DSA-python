@@ -2,6 +2,12 @@ import heapq
 from typing import List
 
 
+# O(ElogV)
+#
+# E 是因為算法需要遍歷所有邊，以找到最短路徑；
+# 而 logV 是因為優先隊列使用了最小堆（min-heap）實現，每次取出最小花費節點需要維護 heap 的平衡
+
+
 class Solution:
     # 1631. Path With Minimum Effort
     # https://leetcode.com/problems/path-with-minimum-effort/
@@ -9,7 +15,7 @@ class Solution:
     # https://labuladong.github.io/algo/di-yi-zhan-da78c/shou-ba-sh-03a72/dijkstra-s-6d0b2/
 
     # 限制中轉次數的寫法
-    # https://labuladong.github.io/algo/di-er-zhan-a01c6/yong-dong--63ceb/lv-you-she-2b4f3/
+    # https://dengking.github.io/discrete/Data-structure/Graph/Shortest-longest-path/Dijkstra%27s-algorithm/LeetCode-787-K%E7%AB%99%E4%B8%AD%E8%BD%AC%E5%86%85%E6%9C%80%E4%BE%BF%E5%AE%9C%E7%9A%84%E8%88%AA%E7%8F%AD/
 
     # 不能有效處理帶有負權邊的圖
     # E = edge, V = vertex
@@ -41,6 +47,8 @@ class Solution:
         # https://www.youtube.com/watch?v=9wV1VxlfBlI&t=1725s
         # bfs 是 push queue 的時候, 把節點標記為 已尋訪
         # 但 dijkstra 是 pop heap, 把節點標示為 已尋訪
+        #
+        # visited 可能是多餘的, 應該 pop 的時候, 判斷當前 node 的 cost 是否大於 dp 表
         visited = [False] * size
 
         distances = [float('inf')] * size  # 各個節點和起點的距離, 類似 dp table 的概念
