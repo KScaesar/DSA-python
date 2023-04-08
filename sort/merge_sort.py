@@ -1,6 +1,12 @@
 from tool import debug_helper, ListNode, create_linklist_from_array, traversal_linklist
 
 
+# Merge Sort 的時間複雜度為 O(n log n)
+#
+# log n 是指拆分數組的過程，也就是將數組分為更小的子數組，直到每個子數組只包含一個元素為止。這個過程需要將數組分成 log n 層
+#
+# n 是指合併數組的過程，也就是將已排序的子數組合併成一個更大的已排序數組的過程
+
 def merge_array_v1(nums1: list[int], nums2: list[int]) -> list[int]:
     N1 = len(nums1)
     N2 = len(nums2)
