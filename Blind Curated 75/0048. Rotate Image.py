@@ -17,7 +17,7 @@ class Solution:
 
     def rotate(self, matrix: List[List[int]]) -> None:
         # 利用矩陣以對角線為中心, 互換的特性
-        # https://labuladong.github.io/algo/2/20/26/
+        # https://labuladong.github.io/algo/di-yi-zhan-da78c/shou-ba-sh-48c1d/er-wei-shu-150fb/#%E9%A1%BA-%E9%80%86%E6%97%B6%E9%92%88%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5
 
         # 時間複雜度分析
         # 以及另一種解法
