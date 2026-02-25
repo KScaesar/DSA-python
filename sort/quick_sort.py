@@ -1,5 +1,39 @@
 from tool import *
 
+# 給定一個陣列區間 A[low … high]
+# 選一個 pivot
+# 重新排列元素，使得
+# pivot 左邊：全部 < pivot
+# pivot 右邊：全部 >= pivot
+#
+# 在 Lomuto partition 中：
+# j 的掃描範圍是：
+# j = low 到 high - 1
+#
+# i 永遠指向「最後一個 < pivot 的元素位置」
+# 初始設定 i = low - 1
+# 在掃描開始之前，還沒有檢查任何元素，< pivot 的元素數量是 0 個，i 必須放在區間外
+#
+# 👉 i 只負責「小於 pivot 的區域邊界」
+# 👉 j 只是掃描指標
+#
+# pivot = A[high]
+# A[high] 在整個掃描過程中完全不會被讀或交換
+# 掃描過程不需要任何例外判斷
+#
+# 藉此建立一個非常穩定的不變式：
+# 1. A[low … i] < pivot
+# 2. A[i+1 … j-1] >= pivot
+# 3. A[high] = pivot（未動）
+def partition_array_v2(nums: list[int], low: int, high: int) -> int:
+    pivot = nums[high]
+    i = low - 1
+    for j in range(low, high):
+        if nums[j] < pivot:
+            i += 1
+            nums[i], nums[j] = nums[j], nums[i]
+    nums[i + 1], nums[high] = nums[high], nums[i + 1]
+    return i + 1
 
 # Quick Sort 的時間複雜度為 O(n log n)
 #
@@ -14,6 +48,7 @@ from tool import *
 # 需要返回 pivot index
 # 所以不能直接傳入一個縮小的陣列
 # 需要使用額外參數 描述陣列大小
+# Hoare partition 的變形
 def partition_array(nums: list[int], left: int, right: int) -> int:
     # https://selfboot.cn/2016/09/01/lost_partition/
     # https://youtu.be/duln2xAZhBA?t=294
@@ -118,7 +153,7 @@ def quick_sort(nums: list[int]):
         if left >= right:
             return
 
-        pivot = partition_array(nums, left, right)
+        pivot = partition_array_v2(nums, left, right)
         _sort(nums, left, pivot - 1)  # 注意 不要寫成 _sort(nums, 0, pivot - 1)
         _sort(nums, pivot + 1, right)
 
